@@ -13,5 +13,4 @@ export default {
     babel(),
     uglify(),
   ],
-  // sourceMap: true,
 };
