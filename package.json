@@ -1,6 +1,6 @@
 {
   "name": "countdown-ti",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Countdown based on relative timestamps",
   "main": "dist/countdown.js",
   "scripts": {
