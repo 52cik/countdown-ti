@@ -86,3 +86,11 @@ test.cb('time dataString', (t) => {
     i -= 1;
   }, () => t.end());
 });
+
+test.cb('expiration', (t) => {
+  t.plan(3);
+  countdown(Date.now() - 1000, () => t.pass());
+  countdown(0, () => t.pass());
+  countdown(-1, () => t.pass());
+  t.end();
+});

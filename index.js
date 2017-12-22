@@ -23,13 +23,19 @@ function countdown(seconds, onTick, onComplete) {
   function setTime(sec) {
     const isTimeStamp = /^(\d{10}|\d{13})$/.test(sec); // 时间戳
     const isString = typeof sec === 'string'; // 时间格式日期字符串
+    const now = parseInt(+new Date() / 1000, 10);
+
     // 时间参数类型处理
     if (isTimeStamp) {
       expires = sec > 1e11 ? parseInt(sec / 1000, 10) : sec;
     } else if (isString) {
       expires = parseInt(+new Date(sec) / 1000, 10);
     } else {
-      expires = parseInt(+new Date() / 1000, 10) + sec; // 到期时间戳 (只精确到秒)
+      expires = now + sec; // 到期时间戳 (只精确到秒)
+    }
+
+    if (expires <= now) {
+      expires = 0;
     }
   }
 
@@ -49,7 +55,7 @@ function countdown(seconds, onTick, onComplete) {
   // 倒计时
   function tick() {
     const time = parseInt(expires + 1 - new Date() / 1000, 10); // 剩余时间
-    if (time === 0) {
+    if (time <= 0) {
       onComplete.call(ctrl); // 完成
     } else {
       interval = setTimeout(tick, 1000);
