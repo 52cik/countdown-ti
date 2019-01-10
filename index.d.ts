@@ -1,12 +1,12 @@
 interface iCtrl {
   /**
-   * 终止倒计时
+   * 终止倒计时方法
    */
   abort(): void;
   /**
-   * 设置新的时间
+   * 设置新的时间方法
    *
-   * @param seconds > 参数 `seconds` 倒计时秒数
+   * @param seconds 倒计时秒数
    */
   setTime(seconds: number): void;
 }
@@ -44,9 +44,9 @@ interface iCtrl {
  * });
  * ```
  *
- * @param seconds    > 参数 `seconds` 倒计时秒数
- * @param onTick     > 参数 onTick 没一秒的回调
- * @param onComplete > 参数 onComplete 是倒计时结束时回调
+ * @param seconds 倒计时秒数
+ * @param onTick 每一秒的回调
+ * @param onComplete 倒计时结束时回调
  */
 declare function countdown(
   seconds: number | string,
