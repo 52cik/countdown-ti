@@ -13,6 +13,7 @@ function noop() {}
 function countdown(seconds, onTick, onComplete) {
   let expires = 0; // 到期时间戳 (只精确到秒)
   let interval = 0; // setTimeout 句柄
+  let isAbort = false; // 是否终止
 
   if (!onComplete) {
     onComplete = onTick || noop;
@@ -35,7 +36,7 @@ function countdown(seconds, onTick, onComplete) {
     }
 
     if (expires <= now) {
-      expires = 0;
+      expires -= 1;
     }
   }
 
@@ -44,6 +45,7 @@ function countdown(seconds, onTick, onComplete) {
      * 终止倒计时
      */
     abort() {
+      isAbort = true;
       clearTimeout(interval);
     },
     /**
@@ -55,11 +57,11 @@ function countdown(seconds, onTick, onComplete) {
   // 倒计时
   function tick() {
     const time = parseInt(expires + 1 - new Date() / 1000, 10); // 剩余时间
+    onTick.call(ctrl, time);
     if (time <= 0) {
       onComplete.call(ctrl); // 完成
-    } else {
+    } else if (!isAbort) {
       interval = setTimeout(tick, 1000);
-      onTick.call(ctrl, time);
     }
   }
 
