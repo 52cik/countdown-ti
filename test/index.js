@@ -2,7 +2,7 @@ import test from 'ava';
 import countdown from '..';
 
 test.cb('base tick', (t) => {
-  t.plan(3);
+  t.plan(4);
   let i = 3;
   countdown(3, (sec) => {
     t.true(i === sec);
@@ -42,7 +42,7 @@ test.cb('abort', (t) => {
 });
 
 test.cb('setTime', (t) => {
-  t.plan(4);
+  t.plan(6);
 
   const cb = countdown(10, () => t.pass(), () => {});
   cb.setTime(2);
@@ -58,7 +58,7 @@ test.cb('setTime', (t) => {
 });
 
 test.cb('time stamp (13)', (t) => {
-  t.plan(3);
+  t.plan(4);
   let i = 3;
   const timeStamp = Date.now() + 3000;
   countdown(timeStamp, (sec) => {
@@ -68,7 +68,7 @@ test.cb('time stamp (13)', (t) => {
 });
 
 test.cb('time stamp (10)', (t) => {
-  t.plan(3);
+  t.plan(4);
   let i = 3;
   const timeStamp = parseInt(Date.now() / 1000, 10) + 3;
   countdown(timeStamp, (sec) => {
@@ -78,7 +78,7 @@ test.cb('time stamp (10)', (t) => {
 });
 
 test.cb('time dataString', (t) => {
-  t.plan(3);
+  t.plan(4);
   let i = 3;
   const dataString = new Date(Date.now() + 3000).toGMTString();
   countdown(dataString, (sec) => {
