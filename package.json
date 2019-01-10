@@ -1,7 +1,7 @@
 {
   "name": "countdown-ti",
-  "version": "1.0.1",
-  "description": "Countdown based on relative timestamps",
+  "version": "1.1.0",
+  "description": "基于时间戳的倒计时插件",
   "main": "dist/countdown.js",
   "scripts": {
     "build": "rollup -c",
