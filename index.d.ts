@@ -1,4 +1,4 @@
-interface iCtrl {
+export interface Countdown {
   /**
    * 终止倒计时方法
    */
@@ -50,8 +50,8 @@ interface iCtrl {
  */
 declare function countdown(
   seconds: number | string,
-  onTick: (this: iCtrl, seconds: number) => void,
+  onTick: (this: Countdown, seconds: number) => void,
   onComplete: () => void
-): iCtrl;
+): Countdown;
 
-export = countdown;
+export default countdown;
