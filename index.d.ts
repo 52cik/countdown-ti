@@ -50,8 +50,8 @@ export interface Countdown {
  */
 declare function countdown(
   seconds: number | string,
-  onTick: (this: Countdown, seconds: number) => void,
-  onComplete: () => void
+  onTick?: (this: Countdown, seconds: number) => void,
+  onComplete?: () => void
 ): Countdown;
 
 export default countdown;
