@@ -10,15 +10,10 @@ function noop() {}
  * @param {function} onTick
  * @param {function} onComplete
  */
-function countdown(seconds, onTick, onComplete) {
+function countdown(seconds, onTick = noop, onComplete = noop) {
   let expires = 0; // 到期时间戳 (只精确到秒)
   let interval = 0; // setTimeout 句柄
   let isAbort = false; // 是否终止
-
-  if (!onComplete) {
-    onComplete = onTick || noop;
-    onTick = noop;
-  }
 
   // 设置时间
   function setTime(sec) {

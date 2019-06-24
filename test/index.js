@@ -41,6 +41,23 @@ test.cb('abort', (t) => {
   setTimeout(() => t.end(), 1000);
 });
 
+
+test.cb('abort 2', (t) => {
+  t.plan(2);
+
+  const cb = countdown(3, (sec) => {
+    t.true(sec === 3);
+  });
+  cb.abort();
+
+  countdown(3, function (sec) {
+    this.abort();
+    t.true(sec === 3);
+  });
+
+  setTimeout(() => t.end(), 1000);
+});
+
 test.cb('setTime', (t) => {
   t.plan(6);
 
